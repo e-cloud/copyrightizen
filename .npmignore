@@ -30,6 +30,4 @@ Desktop.ini
 **/*.ngfactory.ts
 
 # Library files
-src/*
-src/ngx-tree/*
-build/*
+test

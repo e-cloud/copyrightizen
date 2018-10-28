@@ -21,6 +21,7 @@ Desktop.ini
 
 # Build files
 dist
+coverage
 
 yarn-error.log
 package-lock.json

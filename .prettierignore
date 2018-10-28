@@ -1,0 +1,8 @@
+package-lock.json
+package.json
+.vscode
+.idea
+.git
+test/__baselines__
+test/__sources__
+test/templates
