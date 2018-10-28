@@ -26,8 +26,16 @@ Desktop.ini
 .DS_Store
 **/.DS_Store
 
-# Ngc generated files
-**/*.ngfactory.ts
+# generated files
+coverage
 
 # Library files
 test
+
+typings.d.ts
+/.*
+jest.config.js
+tsconfig.json
+tslint.json
+
+yarn.lock

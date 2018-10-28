@@ -22,6 +22,8 @@ Desktop.ini
 # Build files
 dist
 coverage
+lib/*.js
+test/*.js
 
 yarn-error.log
 package-lock.json
