@@ -2,7 +2,7 @@ module.exports = {
   testMatch: ['**/test/*.test.ts'],
   testEnvironment: 'node',
   transform: {
-    '.ts': '<rootDir>/node_modules/ts-jest/preprocessor.js',
+    '^.+\\.ts$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js'],
   coveragePathIgnorePatterns: ['/node_modules/', '/test/'],

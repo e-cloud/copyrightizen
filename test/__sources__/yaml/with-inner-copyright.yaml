@@ -1,3 +1,5 @@
+%YAML 1.2
+
 # Copyright (C) xxx Systems, Inc - All Rights Reserved
 # Unauthorized copying of this file, via any medium is strictly prohibited
 # Proprietary and confidential
@@ -5,7 +7,6 @@
 #
 # From https://softwareengineering.stackexchange.com/a/68150/266765
 
-%YAML 1.2
 ---
 # partial from http://yaml.org/
 YAML: YAML Ain't Markup Language

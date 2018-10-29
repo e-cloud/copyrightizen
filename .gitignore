@@ -21,6 +21,7 @@ Desktop.ini
 
 # Build files
 dist
+build
 coverage
 lib/*.js
 test/*.js

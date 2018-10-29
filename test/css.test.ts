@@ -1,29 +1,41 @@
-import { getSourceFile, getBaselineFile, getTemplate } from './util'
+import { assertRenderEqual } from './util'
 import { render } from '../lib/css-renderer'
 
 describe('css/scss/sass/less tests', () => {
-  test('should append copyright to the simple basic css file', async () => {
-    await assertRenderEqual('css/basic.css', 'basic.txt')
+  describe('for basic bare file', () => {
+    test('should append copyright to the target css', async () => {
+      await assertRenderEqual(render, 'css/basic.css', 'basic.txt')
+    })
+
+    test('should append copyright to the target scss', async () => {
+      await assertRenderEqual(render, 'scss/basic.scss', 'basic.txt')
+    })
+
+    // failing because of https://github.com/tonyganch/gonzales-pe/pull/214#issuecomment-433608537
+    test('should append copyright to the target sass', async () => {
+      await assertRenderEqual(render, 'sass/basic.sass', 'basic.txt')
+    })
+
+    test('should append copyright to the target less', async () => {
+      await assertRenderEqual(render, 'less/basic.less', 'basic.txt')
+    })
   })
 
-  test('should append copyright to the simple basic scss file', async () => {
-    await assertRenderEqual('scss/basic.scss', 'basic.txt', 'scss')
+  describe('with normal top comment', () => {
+    test('should append copyright to the target css file', async () => {
+      await assertRenderEqual(render, 'css/with-normal-top-comment.css', 'basic.txt')
+    })
   })
 
-  // failing because of https://github.com/tonyganch/gonzales-pe/pull/214#issuecomment-433608537
-  test('should append copyright to the simple basic sass file', async () => {
-    await assertRenderEqual('sass/basic.sass', 'basic.txt', 'sass')
+  describe('with top different copyright', () => {
+    test('should append copyright and replace/remove existing copyright(s)', async () => {
+      await assertRenderEqual(render, 'css/with-top-copyright.css', 'basic.txt')
+    })
   })
 
-  test('should append copyright to the simple basic less file', async () => {
-    await assertRenderEqual('less/basic.less', 'basic.txt', 'less')
+  describe('with same copyright', () => {
+    test('should change nothing', async () => {
+      await assertRenderEqual(render, 'css/with-same-copyright.css', 'basic.txt', true)
+    })
   })
 })
-
-async function assertRenderEqual(sourcePath: string, tplPath: string, syntax?: string) {
-  const source = await getSourceFile(sourcePath)
-  const baseline = await getBaselineFile(sourcePath)
-  const template = await getTemplate(tplPath)
-
-  expect(render(source, template, syntax)).toEqual(baseline)
-}

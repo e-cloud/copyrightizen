@@ -1,0 +1,25 @@
+/**
+ * Copyright (C) xxx Systems, Inc - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by John Doe <jdoe@heaven.com>, 1984
+ *
+ * From https://softwareengineering.stackexchange.com/a/68150/266765
+ */
+
+/**
+ * Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+ * Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+ * when an unknown printer took a galley of type and scrambled it to make a type
+ * specimen book. It has survived not only five centuries, but also the leap into
+ * electronic typesetting, remaining essentially unchanged.
+ */
+
+body {
+    background-color: lightblue;
+}
+
+h1 {
+    color: navy;
+    margin-left: 20px;
+}

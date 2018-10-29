@@ -1,24 +1,11 @@
-import * as gonzales from 'gonzales-pe'
-import { generateBlockCommentContent } from './util'
+import { generateBlockCommentContent, removeOldCopyrightWithinBlockComment, EOL } from './util'
 
-function render(source: string, template: string, syntax = 'css') {
-  const parseTree = gonzales.parse(source, {
-    syntax,
-  })
+function render(source: string, template: string) {
+  const desiredComment = `/*${generateBlockCommentContent(template)}*/${EOL + EOL}`
 
-  const commentNode = gonzales.createNode({
-    syntax,
-    type: 'multilineComment',
-    content: generateBlockCommentContent(template),
-  })
-  const blankLineNode = gonzales.createNode({
-    type: 'space',
-    content: '\n\n',
-  })
-  parseTree.insert(0, blankLineNode)
-  parseTree.insert(0, commentNode)
+  source = removeOldCopyrightWithinBlockComment(source)
 
-  return parseTree.toString()
+  return desiredComment + source.trimLeft()
 }
 
 export { render }

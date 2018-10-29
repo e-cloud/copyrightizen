@@ -1,19 +1,11 @@
-import { generateBlockCommentContent } from './util'
-
-const xmlCommentRegexp = /$(<!--([\s\S]*?)-->)/g
+import { generateBlockCommentContent, EOL, removeOldCopyrightWithinXML } from './util'
 
 function render(source: string, template: string) {
-  const comment = `<!--${generateBlockCommentContent(template, '-', false)}-->\n\n`
+  const desiredComment = `<!--${generateBlockCommentContent(template, '-', false)}-->${EOL + EOL}`
 
-  const matches = xmlCommentRegexp.exec(source.trim())
+  source = removeOldCopyrightWithinXML(source)
 
-  let result
-
-  if (!matches) {
-    result = comment + source
-  }
-
-  return result
+  return desiredComment + source.trimLeft()
 }
 
 export { render }

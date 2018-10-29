@@ -1,20 +1,11 @@
-import * as yaml from 'yaml'
+import { EOL, removeOldCopyrightWithinYAML } from './util';
 
 function render(source: string, template: string) {
-  const templateLines = template.split('\n')
-  const comment = templateLines.map(line => ` ${line}`.trimRight()).join('\n')
+  const desiredComment = template.split('\n').map(line => `# ${line}`.trimRight()).join(EOL) + EOL + EOL
 
-  const doc = yaml.parseDocument(source, {
-    keepCstNodes: true,
-  })
+  source = removeOldCopyrightWithinYAML(source)
 
-  doc.commentBefore = comment
-
-  const preout = doc.toString()
-
-  const lastTemplateLine = templateLines[templateLines.length - 1]
-
-  return preout.replace(lastTemplateLine, `${lastTemplateLine}\n`)
+  return desiredComment + source.trimLeft()
 }
 
 export { render }

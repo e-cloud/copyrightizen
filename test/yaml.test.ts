@@ -1,17 +1,40 @@
-import { getSourceFile, getBaselineFile, getTemplate } from './util'
+import { assertRenderEqual } from './util'
 import { render } from '../lib/yaml-renderer'
 
 describe('yaml tests', () => {
-  // failing because of https://github.com/eemeli/yaml/issues/42
-  test('should append copyright to the simple basic yaml file', async () => {
-    await assertRenderEqual('yaml/basic.yaml', 'basic.txt')
+  describe('for basic bare file', () => {
+    test('should append copyright to the target yaml', async () => {
+      await assertRenderEqual(render, 'yaml/basic.yaml', 'basic.txt')
+    })
+  })
+
+  describe('with normal top comment', () => {
+    test('should append copyright to the target yaml', async () => {
+      await assertRenderEqual(render, 'yaml/with-normal-top-comment.yaml', 'basic.txt')
+    })
+  })
+
+  describe('with top different copyright', () => {
+    test('should append copyright and replace/remove existing copyright(s)', async () => {
+      await assertRenderEqual(render, 'yaml/with-top-copyright.yaml', 'basic.txt')
+    })
+  })
+
+  describe('with inner different copyright', () => {
+    test('should append copyright and remove existing copyright(s)', async () => {
+      await assertRenderEqual(render, 'yaml/with-inner-copyright.yaml', 'basic.txt')
+    })
+  })
+
+  describe('with same copyright', () => {
+    test('should change nothing', async () => {
+      await assertRenderEqual(render, 'yaml/with-same-copyright.yaml', 'basic.txt', true)
+    })
+  })
+
+  describe('with normal comment and different copyright', () => {
+    test('should append copyright and remove existing copyright(s)', async () => {
+      await assertRenderEqual(render, 'yaml/with-normal-comment-and-copyright.yaml', 'basic.txt')
+    })
   })
 })
-
-async function assertRenderEqual(sourcePath: string, tplPath: string) {
-  const source = await getSourceFile(sourcePath)
-  const baseline = await getBaselineFile(sourcePath)
-  const template = await getTemplate(tplPath)
-
-  expect(render(source, template)).toEqual(baseline)
-}

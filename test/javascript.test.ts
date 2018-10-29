@@ -1,16 +1,28 @@
-import { getSourceFile, getBaselineFile, getTemplate } from './util'
+import { assertRenderEqual } from './util'
 import { render } from '../lib/js-renderer'
 
 describe('javascript tests', () => {
-  test('should append copyright to the simple basic js file', async () => {
-    await assertRenderEqual('js/basic.js', 'basic.txt')
+  describe('for basic bare file', () => {
+    test('should append copyright to the target js', async () => {
+      await assertRenderEqual(render, 'js/basic.js', 'basic.txt')
+    })
+  })
+
+  describe('with normal top comment', () => {
+    test('should append copyright to the target js', async () => {
+      await assertRenderEqual(render, 'js/with-normal-top-comment.js', 'basic.txt')
+    })
+  })
+
+  describe('with top different copyright', () => {
+    test('should append copyright and replace/remove existing copyright(s)', async () => {
+      await assertRenderEqual(render, 'js/with-top-copyright.js', 'basic.txt')
+    })
+  })
+
+  describe('with same copyright', () => {
+    test('should change nothing', async () => {
+      await assertRenderEqual(render, 'js/with-same-copyright.js', 'basic.txt', true)
+    })
   })
 })
-
-async function assertRenderEqual(sourcePath: string, tplPath: string) {
-  const source = await getSourceFile(sourcePath)
-  const baseline = await getBaselineFile(sourcePath)
-  const template = await getTemplate(tplPath)
-
-  expect(render(source, template)).toEqual(baseline)
-}

@@ -4,6 +4,7 @@
     "sourceMap": false,
     "declaration": false,
     "emitDecoratorMetadata": false,
+    "outDir": "",
   },
   "exclude": ["test/**"]
 }
