@@ -1,4 +1,4 @@
-import { RENDER_STATUS, RenderStatus, RenderResult } from "./common.model";
+import { RENDER_STATUS, RenderStatus, RenderResult } from './common.model'
 
 export const EOL = '\n'
 
@@ -10,7 +10,12 @@ export function generateBlockCommentContent(text: string, lineChar = '*', needTo
     .join(EOL)}${EOL} `
 }
 
-export function sharedInnerRender(desiredComment: string, source: string, commentRegexp: RegExp, cpRegExp: RegExp): RenderResult {
+export function sharedInnerRender(
+  desiredComment: string,
+  source: string,
+  commentRegexp: RegExp,
+  cpRegExp: RegExp,
+): RenderResult {
   const updatedSource = removeOldCopyright(source, commentRegexp, cpRegExp)
 
   let status: RenderStatus = RENDER_STATUS.append
@@ -34,7 +39,7 @@ export function removeOldCopyright(source: string, commentRegexp: RegExp, cpRegE
     const existingVersions = []
     const input = source.trim()
     // tslint:disable-next-line:no-conditional-assignment
-    while (matches = commentRegexp.exec(input)) {
+    while ((matches = commentRegexp.exec(input))) {
       // find out the copyright comment
       if (cpRegExp.test(matches[0])) {
         existingVersions.push(matches[0])
@@ -42,7 +47,7 @@ export function removeOldCopyright(source: string, commentRegexp: RegExp, cpRegE
     }
 
     // remove all existing copyrights
-    existingVersions.forEach(item => source = source.replace(item, EOL + EOL))
+    existingVersions.forEach(item => (source = source.replace(item, EOL + EOL)))
   }
 
   return source

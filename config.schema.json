@@ -27,10 +27,7 @@
     "updateStrategy": {
       "description": "the global update strategy when existing copyright is detected in target source file",
       "type": "string",
-      "enum": [
-        "replace",
-        "skip"
-      ]
+      "enum": ["replace", "skip"]
     },
     "scopes": {
       "description": "the scope list for manage various versions of copyright if needed",
@@ -44,26 +41,14 @@
       "type": "object",
       "patternProperties": {
         "^\\w+$": {
-          "enum": [
-            "js",
-            "ts",
-            "css",
-            "scss",
-            "sass",
-            "less",
-            "html",
-            "xml",
-            "yaml"
-          ]
+          "enum": ["js", "ts", "css", "scss", "sass", "less", "html", "xml", "yaml"]
         }
       }
     },
     "definitions": {
       "scope": {
         "type": "object",
-        "required": [
-          "paths"
-        ],
+        "required": ["paths"],
         "properties": {
           "name": {
             "description": "the id of scope",
@@ -91,10 +76,7 @@
           "updateStrategy": {
             "description": "the current scope's update strategy when existing copyright is detected in target source file",
             "type": "string",
-            "enum": [
-              "replace",
-              "skip"
-            ]
+            "enum": ["replace", "skip"]
           }
         }
       }

@@ -34,7 +34,7 @@
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "release": "standard-version",
     "prettier": "prettier --config-precedence file-override --write",
-    "prettier-all": "prettier --loglevel error --config-precedence file-override --write ./**/**.{ts,js,json}",
+    "prettier-all": "prettier --loglevel error --config-precedence file-override --write ./**/*.{ts,js,json}",
     "postpublish": "npm run clean"
   },
   "dependencies": {
@@ -82,11 +82,7 @@
     ]
   },
   "lint-staged": {
-    "{lib,test,.}/*.ts": [
-      "prettier",
-      "git add"
-    ],
-    "bin/*.js": [
+    "{bin,lib,test}/*.ts": [
       "prettier",
       "git add"
     ]

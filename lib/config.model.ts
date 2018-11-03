@@ -14,7 +14,7 @@ export interface ScopeWithId extends SimpleScope {
 export type SupportedExt = 'css' | 'js' | 'xml' | 'yaml'
 
 export interface ExtensionAliasMap {
-  [key: string] : SupportedExt
+  [key: string]: SupportedExt
 }
 
 export interface ConfigurationModel extends SimpleScope {

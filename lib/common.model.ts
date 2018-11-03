@@ -1,4 +1,3 @@
-
 export interface RenderFunc {
   (source: string, template: string, copyrightDetectRule: RegExp): RenderResult
 }
@@ -13,5 +12,5 @@ export type RenderStatus = 'update' | 'append' | 'identical'
 export enum RENDER_STATUS {
   update = 'update',
   append = 'append',
-  identical = 'identical'
+  identical = 'identical',
 }
