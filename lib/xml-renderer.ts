@@ -1,11 +1,7 @@
-import { generateBlockCommentContent, EOL, removeOldCopyrightWithinXML } from './util'
+import { generateBlockCommentContent, EOL, sharedInnerRender, xmlCommentRegexp } from './util'
 
-function render(source: string, template: string) {
+export function render(source: string, template: string, cpRegExp: RegExp) {
   const desiredComment = `<!--${generateBlockCommentContent(template, '-', false)}-->${EOL + EOL}`
 
-  source = removeOldCopyrightWithinXML(source)
-
-  return desiredComment + source.trimLeft()
+  return sharedInnerRender(desiredComment, source, xmlCommentRegexp, cpRegExp)
 }
-
-export { render }

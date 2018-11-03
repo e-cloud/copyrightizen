@@ -1,3 +1,5 @@
+import { renderStatus, RenderStatus, RenderResult } from "./common.model";
+
 export const EOL = '\n'
 
 export function generateBlockCommentContent(text: string, lineChar = '*', needTopChar = true) {
@@ -8,19 +10,25 @@ export function generateBlockCommentContent(text: string, lineChar = '*', needTo
     .join(EOL)}${EOL} `
 }
 
-export function removeOldCopyrightWithinBlockComment(source: string) {
-  return removeOldCopyright(source, blockCommentRegexp)
+export function sharedInnerRender(desiredComment: string, source: string, commentRegexp: RegExp, cpRegExp: RegExp): RenderResult {
+  const updatedSource = removeOldCopyright(source, commentRegexp, cpRegExp)
+
+  let status: RenderStatus = renderStatus.append
+
+  if (updatedSource !== source && !source.trimLeft().startsWith(desiredComment)) {
+    status = 'update'
+  }
+
+  const final = desiredComment + updatedSource.trimLeft()
+
+  if (final.trim() === source.trim()) {
+    status = 'identical'
+  }
+
+  return { content: final, status }
 }
 
-export function removeOldCopyrightWithinXML(source: string) {
-  return removeOldCopyright(source, xmlCommentRegexp)
-}
-
-export function removeOldCopyrightWithinYAML(source: string) {
-  return removeOldCopyright(source, yamlMultilineCommentRegexp)
-}
-
-export function removeOldCopyright(source: string, commentRegexp: RegExp, cpRegExp = copyrightRegexp) {
+export function removeOldCopyright(source: string, commentRegexp: RegExp, cpRegExp: RegExp) {
   if (cpRegExp.test(source)) {
     let matches
     const existingVersions = []
@@ -39,8 +47,6 @@ export function removeOldCopyright(source: string, commentRegexp: RegExp, cpRegE
 
   return source
 }
-
-export const copyrightRegexp = /copyright/i
 
 export const xmlCommentRegexp = /\s*<!--([\s\S]*?)-->\s*/g
 

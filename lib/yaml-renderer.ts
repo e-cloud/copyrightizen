@@ -1,11 +1,7 @@
-import { EOL, removeOldCopyrightWithinYAML } from './util';
+import { EOL, sharedInnerRender, yamlMultilineCommentRegexp } from './util';
 
-function render(source: string, template: string) {
+export function render(source: string, template: string, cpRegExp: RegExp) {
   const desiredComment = template.split('\n').map(line => `# ${line}`.trimRight()).join(EOL) + EOL + EOL
 
-  source = removeOldCopyrightWithinYAML(source)
-
-  return desiredComment + source.trimLeft()
+  return sharedInnerRender(desiredComment, source, yamlMultilineCommentRegexp, cpRegExp)
 }
-
-export { render }

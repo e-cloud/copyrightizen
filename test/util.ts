@@ -1,5 +1,6 @@
 import * as path from 'path'
 import { readFile } from 'fs-extra'
+import { RenderFunc, RenderStatus } from '../lib/common.model';
 
 export function getSourceFile(subPath: string) {
   return readFile(path.resolve(__dirname, '__sources__', subPath), 'utf8')
@@ -13,20 +14,16 @@ export function getTemplate(subPath: string) {
   return readFile(path.resolve(__dirname, 'templates', subPath), 'utf8')
 }
 
-export interface RenderFunc {
-  (source: string, template: string): string
-}
+export const copyrightRegexp = /copyright/i
 
-export async function assertRenderEqual(render: RenderFunc, sourcePath: string, tplPath: string, assertNoChange = false) {
+export async function assertRenderEqual(render: RenderFunc, sourcePath: string, tplPath: string, assertStatus: RenderStatus) {
   const source = await getSourceFile(sourcePath)
   const baseline = await getBaselineFile(sourcePath)
   const template = await getTemplate(tplPath)
 
-  const result = render(source, template)
+  const result = render(source, template, copyrightRegexp)
 
-  if (assertNoChange) {
-    expect(result).toEqual(source)
-  }
+  expect(result.status).toEqual(assertStatus)
 
-  expect(result).toEqual(baseline)
+  expect(result.content).toEqual(baseline)
 }
