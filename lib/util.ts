@@ -1,4 +1,4 @@
-import { renderStatus, RenderStatus, RenderResult } from "./common.model";
+import { RENDER_STATUS, RenderStatus, RenderResult } from "./common.model";
 
 export const EOL = '\n'
 
@@ -13,7 +13,7 @@ export function generateBlockCommentContent(text: string, lineChar = '*', needTo
 export function sharedInnerRender(desiredComment: string, source: string, commentRegexp: RegExp, cpRegExp: RegExp): RenderResult {
   const updatedSource = removeOldCopyright(source, commentRegexp, cpRegExp)
 
-  let status: RenderStatus = renderStatus.append
+  let status: RenderStatus = RENDER_STATUS.append
 
   if (updatedSource !== source && !source.trimLeft().startsWith(desiredComment)) {
     status = 'update'

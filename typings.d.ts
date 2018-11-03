@@ -1,14 +1,9 @@
-declare module 'recast' {
+declare module 'import-local' {
   const a: any
   export = a
 }
 
-declare module 'gonzales-pe' {
-  const a: any
-  export = a
-}
-
-declare module 'yaml' {
+declare module 'to-absolute-glob' {
   const a: any
   export = a
 }

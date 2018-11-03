@@ -1,0 +1,103 @@
+{
+  "$id": "https://example.com/address.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "copyrightizen",
+  "description": "the config file constraints for copyrightizen",
+  "type": "object",
+  "properties": {
+    "detectRule": {
+      "description": "the global regexp expression to detect copyright",
+      "type": "string"
+    },
+    "paths": {
+      "description": "a default list of glob string to match files of global scope",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "licenseText": {
+      "description": "the global default license/copyright notice",
+      "type": "string"
+    },
+    "licenseTemplateUrl": {
+      "description": "the address for global license template file, combination with \"licenseText\" field is not allowed",
+      "type": "string"
+    },
+    "updateStrategy": {
+      "description": "the global update strategy when existing copyright is detected in target source file",
+      "type": "string",
+      "enum": [
+        "replace",
+        "skip"
+      ]
+    },
+    "scopes": {
+      "description": "the scope list for manage various versions of copyright if needed",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/scope"
+      }
+    },
+    "extensionAlias": {
+      "description": "a mapping object to handle those file with non-built-in supported extension",
+      "type": "object",
+      "patternProperties": {
+        "^\\w+$": {
+          "enum": [
+            "js",
+            "ts",
+            "css",
+            "scss",
+            "sass",
+            "less",
+            "html",
+            "xml",
+            "yaml"
+          ]
+        }
+      }
+    },
+    "definitions": {
+      "scope": {
+        "type": "object",
+        "required": [
+          "paths"
+        ],
+        "properties": {
+          "name": {
+            "description": "the id of scope",
+            "type": "string"
+          },
+          "detectRule": {
+            "description": "the global regexp expression to detect copyright",
+            "type": "string"
+          },
+          "paths": {
+            "description": "a list of glob string to match files of current scope",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "licenseText": {
+            "description": "the license/copyright notice for current scope's",
+            "type": "string"
+          },
+          "licenseTemplateUrl": {
+            "description": "the address for current scope's license template file, combination with \"licenseText\" field is not allowed",
+            "type": "string"
+          },
+          "updateStrategy": {
+            "description": "the current scope's update strategy when existing copyright is detected in target source file",
+            "type": "string",
+            "enum": [
+              "replace",
+              "skip"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

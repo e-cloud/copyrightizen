@@ -10,7 +10,7 @@ export interface RenderResult {
 
 export type RenderStatus = 'update' | 'append' | 'identical'
 
-export enum renderStatus {
+export enum RENDER_STATUS {
   update = 'update',
   append = 'append',
   identical = 'identical'
