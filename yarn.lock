@@ -216,6 +216,11 @@
   version "23.3.8"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.8.tgz#56b07c0c3d7c8a6c47abb4f785cab648c6eafd01"
 
+"@types/joi@^14.0.0":
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/@types/joi/-/joi-14.0.0.tgz#7906aca6850868f39f888efcaef28bbcbbab5498"
+  integrity sha512-q3r+5QfNrthJL+5Pvb9MOP7rJniTfAV+cGbsO2a3ItGSuwmp2vdjjZ/VCWKwGT5lNx4eOvZI4O3IpSIXh3f4RA==
+
 "@types/lodash@^4.14.110", "@types/lodash@^4.14.117":
   version "4.14.117"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.117.tgz#695a7f514182771a1e0f4345d189052ee33c8778"
@@ -2755,6 +2760,15 @@ jest@^23.6.0:
   dependencies:
     import-local "^1.0.0"
     jest-cli "^23.6.0"
+
+joi@^14.0.6:
+  version "14.0.6"
+  resolved "https://registry.yarnpkg.com/joi/-/joi-14.0.6.tgz#8c72314af6dba13ca48028a4f0af992ddc5a7472"
+  integrity sha512-mKXPSNYMG3taVBZemQj3pPOlMZGrnnu14JKAC6AHg6jJVX35L7oDk89ss1sHj+laDSEh3mD2PmeheI5k6Aw8nQ==
+  dependencies:
+    hoek "6.x.x"
+    isemail "3.x.x"
+    topo "3.x.x"
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"

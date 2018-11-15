@@ -47,7 +47,7 @@ export async function run(config: MergedConfigurationModel) {
       }
     })
 
-    return processFiles(filesGlobMatchedMap, precedenceScopeMap, getRender)
+    return processSupportedFiles(filesGlobMatchedMap, precedenceScopeMap, getRender)
   }
 
   // if no files, then we handle all files matched with global scope and defined scopes
@@ -62,7 +62,7 @@ export async function run(config: MergedConfigurationModel) {
     })
   })
 
-  return processFiles(filesGlobMatchedMap, precedenceScopeMap, getRender)
+  return processSupportedFiles(filesGlobMatchedMap, precedenceScopeMap, getRender)
 }
 
 function checkExtAndSaveFileScopeMapIfNeed(
@@ -81,7 +81,7 @@ function checkExtAndSaveFileScopeMapIfNeed(
  * read those supported file and try to apply copyright append/update logic,
  * and write the changes if necessary
  */
-function processFiles(
+function processSupportedFiles(
   fileScopeMap: Map<string, ScopeNameAndExt>,
   precedenceScopeMap: Map<string, ScopeWithId>,
   getRender: (ext: string) => RenderFunc,

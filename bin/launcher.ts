@@ -1,10 +1,12 @@
 import * as cosmiconfig from 'cosmiconfig'
 import * as _ from 'lodash'
 import * as path from 'path'
+import * as Joi from 'joi'
 import * as yargs from 'yargs'
-import * as pkgJSON from '../package.json'
 import { defaultConfig } from '../lib/default-config'
 import { run } from './runner'
+import { ConfigurationModel } from '../lib/config.model.js';
+import { validateConfig } from './validate-config';
 
 const cmdApp = yargs
   .options({
@@ -60,18 +62,33 @@ const cmdApp = yargs
 
 export async function launch() {
   const cmdOptions = cmdApp.argv
+  const pkgJSON = require(path.resolve(__dirname, '../package.json'))
   const explorer = cosmiconfig(pkgJSON.name)
 
-  let fileConfig
+  let fileConfigResult: cosmiconfig.CosmiconfigResult = null
 
   // todo: validate the file config content
   if (cmdOptions.config) {
-    fileConfig = await explorer.load(cmdOptions.config).catch(e => {
+    try {
+      fileConfigResult = await explorer.load(cmdOptions.config)
+    } catch (e) {
       console.error(e.message)
       process.exit(1)
-    })
+    }
   } else {
-    fileConfig = await explorer.search()
+    fileConfigResult = await explorer.search()
+  }
+
+  const fileConfig = fileConfigResult ? ensureValidDetectRules(_.cloneDeep(fileConfigResult.config)) : null
+
+  if (fileConfig) {
+    const result = validateConfig(fileConfig);
+
+    if (result.error) {
+      console.error(buildFriendlyErrors(result.error));
+
+      process.exit(1)
+    }
   }
 
   const cmdConfig = {
@@ -83,12 +100,43 @@ export async function launch() {
     updateStrategy: cmdOptions.updateStrategy,
   }
 
-  return run(mergeConfig(defaultConfig, cmdConfig, fileConfig))
+  const mergedConfig = mergeConfig(defaultConfig, cmdConfig, fileConfig)
+
+  ensureValidDetectRules(mergedConfig)
+
+  return run(mergedConfig)
+}
+
+function ensureValidDetectRules(config: Partial<ConfigurationModel>) {
+  if (config.detectRule && _.isString(config.detectRule)) {
+    try {
+      config.detectRule = stringToRegexp(config.detectRule)
+    } catch (e) {
+      console.error('Invalid value for global detectRule in provide config file:')
+      process.exit(1)
+    }
+  }
+
+
+  if (config.scopes) {
+    config.scopes.forEach(scope => {
+      if (scope.detectRule && _.isString(scope.detectRule)) {
+        try {
+          scope.detectRule = stringToRegexp(scope.detectRule)
+        } catch (e) {
+          console.error(`Invalid value for detectRule of scope ${scope.name} in provide config file`)
+          process.exit(1)
+        }
+      }
+    })
+  }
+
+
+  return config
 }
 
 function stringToRegexp(regexStr: string) {
   const match = regexStr.match(new RegExp('^/(.*?)/([gimy]*)$'))!
-  // sanity check here
   const regex = new RegExp(match[1], match[2])
 
   return regex
@@ -104,4 +152,42 @@ function mergeConfig(defaultConf: any, cmdConf: any, fileConf: any) {
       return srcVal
     }
   })
+}
+
+function buildFriendlyErrors(error: Joi.ValidationError) {
+  const messages: string[] = [`${error.details.length} error(s) are found from config file/object:`]
+
+  return error.details.reduce((out, detail) => {
+    switch (detail.type) {
+      case 'any.required':
+        out.push(` - ${detail.message} at ${buildPropertyPath(detail.path.slice(0, detail.path.length - 1))}`)
+        break;
+      case 'object.xor':
+      case 'object.missing':
+        out.push(' - ' + detail.message.replace('value', buildPropertyPath(detail.path)))
+        break;
+      case 'object.without':
+        const pos = detail.path.length > 1 ? buildPropertyPath(detail.path.slice(0, detail.path.length - 1)) : 'global scope'
+        out.push(' - ' + detail.message + ' at ' + pos)
+        break;
+    }
+
+    return out
+  }, messages).join('\n')
+}
+
+function buildPropertyPath(path: (string | number)[]) {
+  return path.reduce((out, cur, index) => {
+    if (index > 0) {
+      if (typeof cur === 'string') {
+        out.push('.' + cur)
+      } else {
+        out.push(`[${cur}]`)
+      }
+    } else {
+      out.push(cur.toString())
+    }
+
+    return out
+  }, [] as string[]).join('')
 }
