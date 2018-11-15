@@ -23,8 +23,12 @@ Desktop.ini
 dist
 build
 coverage
-lib/*.js
-test/*.js
+e2e/tmp
+/index.js*
+lib/*.js*
+test/*.js*
+bin/*.js*
+e2e/*.js*
 
 yarn-error.log
 package-lock.json

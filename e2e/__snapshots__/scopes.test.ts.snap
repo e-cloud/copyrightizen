@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Scopes management tests multiple scopes intersection it should handle scopes correctly 1`] = `
+Object {
+  "differences": 0,
+  "differencesDirs": 0,
+  "differencesFiles": 0,
+  "distinct": 0,
+  "distinctDirs": 0,
+  "distinctFiles": 0,
+  "equal": 12,
+  "equalDirs": 4,
+  "equalFiles": 8,
+  "left": 0,
+  "leftDirs": 0,
+  "leftFiles": 0,
+  "right": 0,
+  "rightDirs": 0,
+  "rightFiles": 0,
+  "same": true,
+  "total": 12,
+  "totalDirs": 4,
+  "totalFiles": 8,
+}
+`;
+
+exports[`Scopes management tests scopes precedence it should handle scopes precedence correctly 1`] = `
+Object {
+  "differences": 0,
+  "differencesDirs": 0,
+  "differencesFiles": 0,
+  "distinct": 0,
+  "distinctDirs": 0,
+  "distinctFiles": 0,
+  "equal": 6,
+  "equalDirs": 0,
+  "equalFiles": 6,
+  "left": 0,
+  "leftDirs": 0,
+  "leftFiles": 0,
+  "right": 0,
+  "rightDirs": 0,
+  "rightFiles": 0,
+  "same": true,
+  "total": 6,
+  "totalDirs": 0,
+  "totalFiles": 6,
+}
+`;

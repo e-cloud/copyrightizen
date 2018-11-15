@@ -1,9 +1,10 @@
 module.exports = {
-  testMatch: ['**/test/*.test.ts'],
+  testMatch: ['**/{test,e2e}/*.test.ts'],
   testEnvironment: 'node',
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
+  setupTestFrameworkScriptFile: './test/jest.setup.ts',
   moduleFileExtensions: ['ts', 'js'],
   coveragePathIgnorePatterns: ['/node_modules/', '/test/'],
   coverageThreshold: {

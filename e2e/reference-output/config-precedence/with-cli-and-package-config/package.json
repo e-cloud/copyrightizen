@@ -1,0 +1,10 @@
+{
+  "name": "with-cli-and-package-config",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "copyrightizen": {
+    "licenseText": "Copyright (c) Humans on Mars",
+    "updateStrategy": "update"
+  }
+}

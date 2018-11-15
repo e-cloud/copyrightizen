@@ -1,0 +1,15 @@
+{
+  "licenseText": "Copyright (c) Humans on Mars",
+  "paths": ["*.js*"],
+  "scopes": [
+    {
+      "name": "sun-god",
+      "detectRule": "/copyright/i",
+      "licenseText": "Copyright (c) God from Sun",
+      "paths": [
+        "index.{ts,js}"
+      ],
+      "updateStrategy": "update"
+    }
+  ]
+}

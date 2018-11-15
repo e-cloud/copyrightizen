@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CLI integration tests console printing with --help 1`] = `
+"Options:
+  --version               Show version number                          [boolean]
+  --config                Use the specific configuration file           [string]
+  --detect-rule           regexp expression to detect copyright         [string]
+  --paths                 a list of glob string to match desired files   [array]
+  --license-text          the license/copyright notice                  [string]
+  --license-template-url  the address for license template file         [string]
+  --update-strategy       the update strategy when existing copyright is
+                          detected in matched source file
+                                                     [choices: \\"update\\", \\"skip\\"]
+  --follow-gitignore      exclude the files listed as excluded in .gitignore
+                                                                       [boolean]
+  -h, --help              Show help                                    [boolean]
+
+Examples:
+  cli.js --config crn.spec.json
+  cli.js --detect-rule /@license/i
+  cli.js --license-text \\"@license whatever you want\\"
+  cli.js --license-template-url config/license.tpl"
+`;
+
+exports[`CLI integration tests invalid input in combination with \`--license-text\` and \`--license-template-url\` 1`] = `
+"Options:
+  --version               Show version number                          [boolean]
+  --config                Use the specific configuration file           [string]
+  --detect-rule           regexp expression to detect copyright         [string]
+  --paths                 a list of glob string to match desired files   [array]
+  --license-text          the license/copyright notice                  [string]
+  --license-template-url  the address for license template file         [string]
+  --update-strategy       the update strategy when existing copyright is
+                          detected in matched source file
+                                                     [choices: \\"update\\", \\"skip\\"]
+  --follow-gitignore      exclude the files listed as excluded in .gitignore
+                                                                       [boolean]
+  -h, --help              Show help                                    [boolean]
+
+Examples:
+  cli.js --config crn.spec.json
+  cli.js --detect-rule /@license/i
+  cli.js --license-text \\"@license whatever you want\\"
+  cli.js --license-template-url config/license.tpl
+
+Arguments license-text and license-template-url are mutually exclusive
+"
+`;
+
+exports[`CLI integration tests it should use license template from \`--license-template-url\` 1`] = `
+Object {
+  "differences": 0,
+  "differencesDirs": 0,
+  "differencesFiles": 0,
+  "distinct": 0,
+  "distinctDirs": 0,
+  "distinctFiles": 0,
+  "equal": 3,
+  "equalDirs": 0,
+  "equalFiles": 3,
+  "left": 0,
+  "leftDirs": 0,
+  "leftFiles": 0,
+  "right": 0,
+  "rightDirs": 0,
+  "rightFiles": 0,
+  "same": true,
+  "total": 3,
+  "totalDirs": 0,
+  "totalFiles": 3,
+}
+`;
+
+exports[`CLI integration tests validation error message should be output when invalid config received 1`] = `
+"8 error(s) are found from config file/object:
+ - \\"detectRule\\" is required at scopes[0]
+ - \\"name\\" is required at scopes[0]
+ - \\"scopes[0]\\" contains a conflict between exclusive peers [licenseText, licenseTemplateUrl]
+ - \\"detectRule\\" is required at scopes[1]
+ - \\"updateStrategy\\" is required at scopes[1]
+ - \\"name\\" is required at scopes[1]
+ - \\"scopes[1]\\" must contain at least one of [licenseText, licenseTemplateUrl]
+ - \\"licenseText\\" conflict with forbidden peer \\"licenseTemplateUrl\\" at global scope
+"
+`;

@@ -48,7 +48,7 @@
     "definitions": {
       "scope": {
         "type": "object",
-        "required": ["paths"],
+        "required": ["name", "paths", "detectRule", "updateStrategy"],
         "properties": {
           "name": {
             "description": "the id of scope",

@@ -1,0 +1,17 @@
+{
+  "licenseText": "Copyright (c) Humans on Mars",
+  "updateStrategy": "update",
+  "licenseTemplateUrl": "test",
+  "paths": ["*.js*"],
+  "scopes": [
+    {
+      "paths": ["*.ts*"],
+      "licenseText": "Copyright (c) Humans on Moon",
+      "updateStrategy": "update",
+      "licenseTemplateUrl": "test"
+    },
+    {
+      "paths": ["*.ts*"]
+    }
+  ]
+}

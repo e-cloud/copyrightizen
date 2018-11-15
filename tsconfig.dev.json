@@ -3,7 +3,8 @@
   "compilerOptions": {
     "sourceMap": true,
     "declaration": false,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "outDir": "."
   },
-  "exclude": ["test/**", "dist"]
+  "exclude": ["test/**", "e2e/**", "dist"]
 }

@@ -13,6 +13,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "typeRoots": ["node_modules/@types"]
-  }
+    "typeRoots": ["node_modules/@types", "./types"]
+  },
+  "include": ["types.d.ts", "lib/*", "bin/*"],
+  "exclude": [
+    "test/*/**",
+    "e2e/*/**"
+  ]
 }
