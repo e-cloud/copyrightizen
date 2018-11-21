@@ -7,5 +7,10 @@ if (!importLocal(__filename)) {
     process.env.NODE_ENV = 'dev'
   }
 
-  require('./launcher').launch()
+  try {
+    require('../lib/cli/launcher').launch(process.argv)
+  } catch (e) {
+    console.error(e.message)
+    process.exit(1)
+  }
 }

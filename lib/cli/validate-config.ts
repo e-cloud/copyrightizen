@@ -1,6 +1,6 @@
 import * as Joi from 'joi';
-import { builtInSupportedExts } from '../lib/default-config';
-import { ConfigurationModel } from '../lib/config.model';
+import { builtInSupportedExts } from '../default-config';
+import { ConfigurationModel } from '../config.model';
 
 const simpleScopeSchema = Joi.object().keys({
   detectRule: Joi.object().type(RegExp),

@@ -47,6 +47,30 @@ Arguments license-text and license-template-url are mutually exclusive
 "
 `;
 
+exports[`CLI integration tests it should only process with specified files 1`] = `
+Object {
+  "differences": 0,
+  "differencesDirs": 0,
+  "differencesFiles": 0,
+  "distinct": 0,
+  "distinctDirs": 0,
+  "distinctFiles": 0,
+  "equal": 3,
+  "equalDirs": 0,
+  "equalFiles": 3,
+  "left": 0,
+  "leftDirs": 0,
+  "leftFiles": 0,
+  "right": 0,
+  "rightDirs": 0,
+  "rightFiles": 0,
+  "same": true,
+  "total": 3,
+  "totalDirs": 0,
+  "totalFiles": 3,
+}
+`;
+
 exports[`CLI integration tests it should use license template from \`--license-template-url\` 1`] = `
 Object {
   "differences": 0,
@@ -80,6 +104,5 @@ exports[`CLI integration tests validation error message should be output when in
  - \\"updateStrategy\\" is required at scopes[1]
  - \\"name\\" is required at scopes[1]
  - \\"scopes[1]\\" must contain at least one of [licenseText, licenseTemplateUrl]
- - \\"licenseText\\" conflict with forbidden peer \\"licenseTemplateUrl\\" at global scope
-"
+ - \\"licenseText\\" conflict with forbidden peer \\"licenseTemplateUrl\\" at global scope"
 `;

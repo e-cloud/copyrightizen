@@ -4,10 +4,10 @@ import { Promise } from 'bluebird'
 import * as globby from 'globby'
 import * as micromatch from 'micromatch'
 import * as toAbsGlob from 'to-absolute-glob'
-import { ExtensionAliasMap, MergedConfigurationModel, ScopeWithId } from '../lib/config.model'
-import { RenderFunc, RENDER_STATUS } from '../lib/common.model'
-import { renderMapping } from '../lib/render-mapping'
-import { builtInSupportedExts } from '../lib/default-config'
+import { ExtensionAliasMap, MergedConfigurationModel, ScopeWithId } from '../config.model'
+import { RenderFunc, RENDER_STATUS } from '../common.model'
+import { renderMapping } from '../render-mapping'
+import { builtInSupportedExts } from '../default-config'
 
 interface ScopeNameAndExt {
   name: string
