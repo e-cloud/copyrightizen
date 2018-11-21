@@ -29,6 +29,8 @@ lib/**/*.js*
 test/*.js*
 bin/*.js*
 e2e/*.js*
+*.d.ts
+!types.d.ts
 
 yarn-error.log
 package-lock.json

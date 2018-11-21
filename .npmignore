@@ -35,7 +35,13 @@ test
 typings.d.ts
 /.*
 jest.config.js
-tsconfig.json
+tsconfig*.json
 tslint.json
+appveyor.yml
+e2e
+*.ts
+!*.d.ts
+*.map
 
 yarn.lock
+yarn-error.log
