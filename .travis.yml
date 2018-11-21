@@ -18,6 +18,7 @@ before_script:
 
 script:
   - npm run build
+  - chmod +x ./bin/*
   - npm run test
 
 after_script:
