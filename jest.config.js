@@ -16,5 +16,5 @@ module.exports = {
     },
   },
   collectCoverage: true,
-  collectCoverageFrom: ['lib/*.ts'],
+  collectCoverageFrom: ['lib/**/*.ts'],
 }

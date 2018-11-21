@@ -1,7 +1,7 @@
-import { render as cssRender } from './css-renderer'
-import { render as jsRender } from './js-renderer'
-import { render as xmlRender } from './xml-renderer'
-import { render as yamlRender } from './yaml-renderer'
+import { render as cssRender } from './renderer/css-renderer'
+import { render as jsRender } from './renderer/js-renderer'
+import { render as xmlRender } from './renderer/xml-renderer'
+import { render as yamlRender } from './renderer/yaml-renderer'
 
 export const renderMapping = {
   css: cssRender,

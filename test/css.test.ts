@@ -1,5 +1,5 @@
 import { assertRenderEqual } from './util'
-import { render } from '../lib/css-renderer'
+import { render } from '../lib/renderer/css-renderer'
 
 describe('css/scss/sass/less tests', () => {
   describe('for basic bare file', () => {

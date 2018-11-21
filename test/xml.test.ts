@@ -1,5 +1,5 @@
 import { assertRenderEqual } from './util'
-import { render } from '../lib/xml-renderer'
+import { render } from '../lib/renderer/xml-renderer'
 
 describe('html/xml tests', () => {
   describe('for basic bare file', () => {

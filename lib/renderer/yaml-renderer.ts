@@ -1,4 +1,4 @@
-import { EOL, sharedInnerRender, yamlMultilineCommentRegexp } from './util'
+import { EOL, sharedInnerRender, yamlMultilineCommentRegexp } from '../util'
 
 export function render(source: string, template: string, cpRegExp: RegExp) {
   const desiredComment =

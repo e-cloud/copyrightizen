@@ -1,5 +1,5 @@
 import { assertRenderEqual } from './util'
-import { render } from '../lib/js-renderer'
+import { render } from '../lib/renderer/js-renderer'
 
 describe('javascript tests', () => {
   describe('for basic bare file', () => {

@@ -20,7 +20,7 @@
   "bin": "bin/cli.js",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf {lib,bin}/*.{js,d.ts,map} test/*.js",
+    "clean": "rimraf {lib,bin}/**/*.{js,d.ts,map} test/*.js",
     "build": "tsc -p tsconfig.build.json",
     "build-dev": "tsc -p tsconfig.dev.json --watch",
     "build-watch": "tsc -p tsconfig.build.json --watch",

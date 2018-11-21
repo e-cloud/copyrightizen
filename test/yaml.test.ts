@@ -1,5 +1,5 @@
 import { assertRenderEqual } from './util'
-import { render } from '../lib/yaml-renderer'
+import { render } from '../lib/renderer/yaml-renderer'
 
 describe('yaml tests', () => {
   describe('for basic bare file', () => {

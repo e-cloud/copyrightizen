@@ -15,7 +15,7 @@
     "noFallthroughCasesInSwitch": true,
     "typeRoots": ["node_modules/@types", "./types"]
   },
-  "include": ["types.d.ts", "lib/*", "bin/*"],
+  "include": ["types.d.ts", "lib/**/*", "bin/**/*"],
   "exclude": [
     "test/*/**",
     "e2e/*/**"

@@ -1,5 +1,5 @@
 import { assertRenderEqual } from './util'
-import { render } from '../lib/js-renderer'
+import { render } from '../lib/renderer/js-renderer'
 
 describe('typescript tests', () => {
   test('should append copyright to the simple basic ts file', async () => {
