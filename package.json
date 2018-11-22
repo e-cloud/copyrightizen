@@ -35,6 +35,7 @@
     "release": "standard-version",
     "prettier": "prettier --config-precedence file-override --write",
     "prettier-all": "prettier --loglevel error --config-precedence file-override --write ./**/*.{ts,js,json}",
+    "prepare": "npm run build",
     "postpublish": "npm run clean"
   },
   "dependencies": {
