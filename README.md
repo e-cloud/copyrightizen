@@ -13,12 +13,12 @@
     <img src="https://api.codeclimate.com/v1/badges/397db13e4122f26e736e/test_coverage" alt="CodeClimate Test Coverage" />
   </a>
 
-  <a href="https://www.npmjs.com/package/@e-cloud/copyrightizen">
-    <img src="https://img.shields.io/npm/v/@e-cloud/copyrightizen.svg" alt="Version" />
+  <a href="https://www.npmjs.com/package/copyrightizen">
+    <img src="https://img.shields.io/npm/v/copyrightizen.svg" alt="Version" />
   </a>
 
-  <a href="https://www.npmjs.com/package/@e-cloud/copyrightizen">
-    <img src="https://img.shields.io/npm/l/@e-cloud/copyrightizen.svg" alt="License" />
+  <a href="https://www.npmjs.com/package/copyrightizen">
+    <img src="https://img.shields.io/npm/l/copyrightizen.svg" alt="License" />
   </a>
 
   <a href="https://codeclimate.com/github/e-cloud/copyrightizen/maintainability">
