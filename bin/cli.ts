@@ -8,7 +8,7 @@ if (!importLocal(__filename)) {
   }
 
   try {
-    require('../lib/cli/launcher').launch(process.argv)
+    require('../lib/cli/launcher').launch(process.argv.slice(2))
   } catch (e) {
     console.error(e.message)
     process.exit(1)

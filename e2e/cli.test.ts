@@ -91,6 +91,18 @@ describe('CLI integration tests', () => {
     expect(compareResult).toMatchSnapshot()
   })
 
+  test('it should only process with specified files from real cmd', async () => {
+    const { tmpDir, refDir } = await copyReferenceDirectory('specified-files')
+    await execCopyrightizen(tmpDir, [
+      'should-be-updated.js'
+    ]);
+
+    const compareResult = await compare(refDir, tmpDir, { compareContent: true, noDiffSet: true })
+
+    expect(compareResult.same).toEqual(true)
+    expect(compareResult).toMatchSnapshot()
+  })
+
   test('it should use license template from `--license-template-url`', async () => {
     const { tmpDir, refDir } = await copyReferenceDirectory('use-license-tpl-file')
     await runCopyrightizen(tmpDir, [
