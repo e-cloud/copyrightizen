@@ -25,4 +25,14 @@ describe('javascript tests', () => {
       await assertRenderEqual(render, 'js/with-same-copyright.js', 'basic.txt', 'identical')
     })
   })
+
+  describe('with not formal jsdoc like copyright', () => {
+    test('should update which start with `/*` but not `/**`', async () => {
+      await assertRenderEqual(render, 'js/with-not-formal-jsdoc-copyright.js', 'basic.txt', 'update')
+    })
+
+    test('should update which start with `/*-----------------`', async () => {
+      await assertRenderEqual(render, 'js/with-not-formal-jsdoc-copyright.1.js', 'basic.txt', 'update')
+    })
+  })
 })
