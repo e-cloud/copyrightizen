@@ -1,6 +1,6 @@
 {
   "name": "copyrightizen",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A tool generates designated copyright notice to target files with scope support like Intellij IDEs.",
   "repository": {
     "type": "git",
