@@ -57,4 +57,4 @@ export const xmlCommentRegexp = /\s*<!--([\s\S]*?)-->\s*/g
 
 export const blockCommentRegexp = /\s*\/\*.*?\s*\n([\S\s]*?)\*\/\s*/g
 
-export const yamlMultilineCommentRegexp = /\s*(#\s*[^\n]+\n){2,}\s*/g
+export const yamlMultilineCommentRegexp = /\s*(^#\n?[^\n]+\n){2,}\n*/gm

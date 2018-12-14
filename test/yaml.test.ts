@@ -18,6 +18,10 @@ describe('yaml tests', () => {
     test('should append copyright and replace/remove existing copyright(s)', async () => {
       await assertRenderEqual(render, 'yaml/with-top-copyright.yaml', 'basic.txt', 'update')
     })
+
+    test('should append copyright and separate the empty tail comment line', async () => {
+      await assertRenderEqual(render, 'yaml/with-top-copyright-and-extra-empty-comment-line.yaml', 'basic.txt', 'update')
+    })
   })
 
   describe('with inner different copyright', () => {
@@ -29,6 +33,10 @@ describe('yaml tests', () => {
   describe('with same copyright', () => {
     test('should change nothing', async () => {
       await assertRenderEqual(render, 'yaml/with-same-copyright.yaml', 'basic.txt', 'identical')
+    })
+
+    test('should note change copyright but separate the empty tail comment line', async () => {
+      await assertRenderEqual(render, 'yaml/with-same-copyright-and-extra-empty-comment-line.yaml', 'basic.txt', 'update')
     })
   })
 
