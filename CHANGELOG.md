@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/e-cloud/copyrightizen/compare/v1.0.2...v1.0.3) (2018-12-14)
+
+
+### Bug Fixes
+
+* **yaml:** handle existing comment with tail empty line ([cae27f4](https://github.com/e-cloud/copyrightizen/commit/cae27f4))
+* **yaml:** trim the license template to prevent unintended empty line ([5a828e4](https://github.com/e-cloud/copyrightizen/commit/5a828e4))
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/e-cloud/copyrightizen/compare/v1.0.1...v1.0.2) (2018-11-29)
 
